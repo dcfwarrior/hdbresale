@@ -103,19 +103,23 @@ filter_source_df = filter_source_df[filter_source_df['block'].str.contains(block
 
 ## Chart 1
 
-agg_mean_source_df = filter_source_df.groupby(by=['date','town'], as_index = False).mean()
-agg_count_source_df = filter_source_df.groupby(by=['date','town'], as_index = False).count()
+agg_mean_source_df = 
+#agg_count_source_df = filter_source_df.groupby(by=['date','town'], as_index = False).count()
 
 
 
-fig1 = px.line(agg_mean_source_df, x="date", y="resale_price", color='town')
-fig2 = px.bar(agg_count_source_df, x="date", y="resale_price", color='town')
+fig1 = px.line(
+    filter_source_df.groupby(by=['date','town'], as_index = False).mean(), 
+    x="date", 
+    y="resale_price", 
+    color='town')
+#fig2 = px.bar(agg_count_source_df, x="date", y="resale_price", color='town')
 
 col1 = st.columns((1))
 col1[0] = st.plotly_chart(fig1, use_container_width=True)
 
-col2 = st.columns((1))
-col2[0] = st.plotly_chart(fig2, use_container_width=True)
+#col2 = st.columns((1))
+#col2[0] = st.plotly_chart(fig2, use_container_width=True)
 
 
 ## Chart 2
