@@ -1,10 +1,18 @@
 # -*- coding: utf-8 -*-
 """
+Created on Sun Oct 29 21:47:17 2023
+
+@author: qhkev
+"""
+
+# -*- coding: utf-8 -*-
+"""
 Created on Sun Oct 29 16:09:12 2023
 
 @author: qhkev
 """
 import streamlit as st
+
 import pandas as pd
 import plotly.express as px
 
@@ -95,8 +103,8 @@ filter_source_df = filter_source_df[filter_source_df['block'].str.contains(block
 
 ## Chart 1
 
-agg_mean_source_df = filter_source_df.groupby(by=['date','town']).mean().reset_index()
-agg_count_source_df = filter_source_df.groupby(by=['date','town']).count().reset_index()
+agg_mean_source_df = filter_source_df.groupby(by=['date','town'], as_index = False).mean()
+agg_count_source_df = filter_source_df.groupby(by=['date','town'], as_index = False).count()
 
 
 
@@ -112,15 +120,12 @@ col2[0] = st.plotly_chart(fig2, use_container_width=True)
 
 ## Chart 2
 
-agg_mean_street_source_df = filter_source_df.groupby(by=['date','town', 'street_name']).mean().reset_index()
+agg_mean_street_source_df = filter_source_df.groupby(by=['date','town', 'street_name'], as_index = False).mean()
 fig3 = px.line(agg_mean_street_source_df, x="date", y="resale_price", color='street_name')
 
 
 col3 = st.columns((1))
 col3[0] = st.plotly_chart(fig3, use_container_width=True)
-
-
-
 
 
 
