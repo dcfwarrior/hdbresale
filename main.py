@@ -109,7 +109,7 @@ filter_source_df = filter_source_df[filter_source_df['block'].str.contains(block
 
 
 fig1 = px.line(
-    filter_source_df.groupby(by=['date','town'], as_index = False).mean(), 
+    filter_source_df.groupby(by=['date','town'], as_index = False, observed = True).mean(), 
     x="date", 
     y="resale_price", 
     color='town')
