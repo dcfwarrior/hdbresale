@@ -103,13 +103,13 @@ filter_source_df = filter_source_df[filter_source_df['block'].str.contains(block
 
 ## Chart 1
 
-agg_mean_source_df = filter_source_df.groupby(by=['date','town'], as_index = False)["resale_price"].mean()
+#agg_mean_source_df = 
 #agg_count_source_df = filter_source_df.groupby(by=['date','town'], as_index = False).count()
 
 
 
 fig1 = px.line(
-    agg_mean_source_df, 
+    (filter_source_df.groupby(by=['date','town'], as_index = False)["resale_price"].mean()), 
     x="date", 
     y="resale_price", 
     color='town')
